@@ -1,0 +1,45 @@
+<HTML>
+
+<HEAD>
+<TITLE>Large Print macros for LaTeX</TITLE>
+<META content="text/html; charset=windows-1252"
+http-equiv=Content-Type><BASE="https://gledder1.github.io/index.html">
+<META content="MSHTML 5.00.3019.2500" name=GENERATOR>
+</HEAD>
+
+<BODY bgcolor="">
+<FONT face="arial, helvetica">
+
+<H2>Large Print macros for LaTeX</H2>
+
+It is somewhat tricky to produce a large print version of a LaTeX document for visually-impaired students. I have worked out a general scheme that allows me to quickly convert documents to large print.  Here is what I do:
+<OL>
+<LI>Put the following code in the preamble of the document:
+<BR><BR>\newcommand{\text}{\normalsize}
+<BR>\newcommand{\secshun}[1]{\section{#1}}
+<BR>\newcommand{\subsecshun}[1]{\subsection*{#1}}
+<BR>\newcommand{\subsubsecshun}[1]{\subsubsection*{#1}}
+<BR>\newcommand{\note}[1]{\footnote{#1}}
+<BR><BR><LI>Use the new commands \secshun, \subsecshun, \subsubsecshun, and \note where you would otherwise have used \section, \subsection, \subsubsection, and \footnote.
+<BR><BR><LI>Add \begin{text} immediately after \begin{document} and \end{text} immediately after \end{document}.
+<BR><BR><LI>Put the following code at the end of the document, AFTER the \end{document} line:
+<BR><BR>%    special code to add for large print -- start
+<BR>\textwidth=9.4in
+<BR>\textheight=6.9in
+<BR>\topmargin=-.8in
+<BR>\oddsidemargin=-.2in
+<BR>%
+<BR>\renewcommand{\text}{\LARGE}
+<BR>\renewcommand{\secshun}[1]{\section{\LARGE{#1}}}
+<BR>\renewcommand{\subsecshun}[1]{\subsection*{\LARGE{#1}}}
+<BR>\renewcommand{\subsubsecshun}[1]{\subsubsection*{\LARGE{#1}}}
+<BR>\renewcommand{\note}[1]{\footnote{\large{#1}}}
+<BR>%    special code to add for large print -- end
+<BR><BR><LI>The changes up to this point have no effect on the appearance of the document.  The point is to make the transition between regular print and large print seamless.  To change the appearance to large print, just copy the code listed in step 4 from the end of the document and paste it right before \begin{document}.
+<BR><BR><LI>You may still need to make changes so that your TeX processor output is landscape rather than portrait. With WinEdt I set up dvi2pdf to do portrait and dvi2ps to do landscape.
+</OL>
+
+
+</FONT>
+</BODY>
+</HTML>
